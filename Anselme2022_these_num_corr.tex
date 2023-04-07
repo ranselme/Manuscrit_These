@@ -1,0 +1,280 @@
+\documentclass[12pt,a4paper]{report}
+
+%\linespread{1.5}
+\linespread{1.25}
+%\linespread{2}
+
+%%==============/CARACTERISTIQUES DU DOCUMENT/==============/%%
+
+\usepackage[inner=4.2375cm,outer=4.2375cm]{geometry}
+
+%---------------/Packages pour les polices/---------------/%
+
+\usepackage{fontspec}
+\usepackage{polyglossia}
+\setmainlanguage{french}
+\setotherlanguage{greek}
+\setotherlanguage{thai}
+\setotherlanguage{telugu}
+
+%\usepackage{xeCJK}
+\newfontfamily\cjkfont{Noto Serif CJK TC}
+\newfontfamily\thaifont{Norasi}
+%\newfontfamily\devanagarifont[Script=Devanagari]{Lohit Devanagari}
+\newfontfamily\telugufont{Pothana2000}
+
+\setmainfont{Linux Libertine O}
+\setsansfont{Linux Libertine O}
+
+
+
+%---------------/Packages pour les liens, citations, refs/---------------/%
+
+\usepackage[xetex]{hyperref}
+
+\usepackage{csquotes}
+
+\usepackage{pdfpages}
+
+%---------------/Packages pour les notes/---------------/%
+
+\usepackage{todonotes}
+
+%---------------/Packages pour la mise en forme/---------------/%
+
+\usepackage{multicol}
+\usepackage{epigraph}
+\usepackage{titlesec} 
+\usepackage{setspace}
+\usepackage{pdflscape} 
+
+%---------------/Packages pour les graphiques/---------------/%
+
+\usepackage{float} 
+\usepackage{graphicx}
+\usepackage{subcaption}
+\usepackage{rotating}
+
+
+%---------------/Packages pour les tableaux/---------------/%
+
+\usepackage{array}
+\usepackage{csvsimple}
+\usepackage{booktabs}
+\usepackage{xtab}
+\usepackage{longtable}
+\usepackage{colortbl}
+\usepackage{xcolor}
+
+%---------------/Packages pour les exemples/---------------/%
+
+\usepackage{gb4e}
+\noautomath
+
+%---------------/Packages pour les annexes/---------------/%
+
+\usepackage[toc,page]{appendix}
+\renewcommand{\appendixtocname}{Annexes} 
+\renewcommand{\appendixpagename}{Annexes}
+
+
+%---------------/Packages pour la bibliographie/---------------/%
+
+%Adapté de https://bu.univ-amu.libguides.com/c.php?g=511707&p=3496584 :
+
+\usepackage[
+		backend=bibtex,        % compilateur par défaut pour biblatex
+		sorting=nyt,          % trier par nom, année, titre
+		citestyle=authoryear, % style de citation auteur-année
+		bibstyle=authoryear,  % style de bibliographie alphabétique
+		url=false,
+		isbn=false,
+		eprint=false,
+		dashed=false
+]{biblatex}
+
+
+\DefineBibliographyExtras{french}{\restorecommand\mkbibnamefamily} % pour supprimer les small caps
+\addbibresource{bib_these.bib}
+
+\AtEveryBibitem{\clearfield{month}}
+\AtEveryBibitem{\clearfield{day}}
+
+\renewbibmacro{in:}{%
+	\ifentrytype{article}
+	{}
+	{\bibstring{in}%
+		\printunit{\intitlepunct}}}
+	
+%beamdeazconaCoatlanLoxichaZapotecGrammar2004
+
+%---------------/Définition de nouvelles commandes/---------------/%
+
+\setcounter{tocdepth}{4}
+\setcounter{secnumdepth}{4}
+
+\newcommand{\textg}[1]{« #1 »}
+\newcommand{\glotto}[1]{(Glotto: \texttt{#1})}
+
+\renewcommand{\chapterautorefname}{chapitre}
+\renewcommand{\sectionautorefname}{section}
+\renewcommand{\subsectionautorefname}{sous-section}
+\renewcommand{\subsubsectionautorefname}{sous-sous-section}
+
+%---------------/Nouvelle indexation/---------------/%
+% Adapté de https://tex.stackexchange.com/questions/60209/how-to-add-an-extra-level-of-sections-with-headings-below-subsubsection
+
+\usepackage{titlesec}
+
+\titleformat{\paragraph}
+{\normalfont\normalsize\bfseries}{\theparagraph}{1em}{}
+\titlespacing*{\paragraph}
+{0pt}{3.25ex plus 1ex minus .2ex}{1.5ex plus .2ex}
+
+
+%---------------/Page blanche/---------------/%
+% De https://www.math-linux.com/latex-4/faq/latex-faq/article/latex-comment-inserer-une-page-blanche-vide-avec-ou-sans-numero-thispagestyle-newpage-usepackage-afterpage
+\usepackage{afterpage}
+\newcommand\myemptypage{
+	\null
+	\thispagestyle{empty}
+	\addtocounter{page}{-1}
+	\newpage
+}
+
+%---------------/Mise en forme chapitres/---------------/%
+% De https://tex.stackexchange.com/questions/177144/chapter-style-report-class
+\newcommand*\HUGE{\Huge}
+\newcommand*\chapnamefont{\normalfont\LARGE\MakeUppercase}
+\newcommand*\chapnumfont{\normalfont\HUGE}
+\newcommand*\chaptitlefont{\normalfont\HUGE\bfseries}
+
+\newlength\beforechapskip
+\newlength\midchapskip
+\setlength\midchapskip{\paperwidth}
+\addtolength\midchapskip{-\textwidth}
+\addtolength\midchapskip{-\oddsidemargin}
+\addtolength\midchapskip{-1in}
+\setlength\beforechapskip{18mm}
+
+\titleformat{\chapter}[display]
+{\normalfont\filleft}
+{{\chapnamefont\chaptertitlename}%
+	\makebox[0pt][l]{\hspace{.8em}%
+		\resizebox{!}{\beforechapskip}{\chapnumfont\thechapter}%
+		\hspace{.8em}%
+		\rule{\midchapskip}{\beforechapskip}%
+	}%
+}%
+{25pt}
+{\chaptitlefont}
+\titlespacing*{\chapter}
+{0pt}{40pt}{40pt}
+
+
+%%==============/DEBUT DU DOCUMENT/==============/%%
+
+\begin{document}
+
+\renewcommand{\appendixautorefname}{Annexe}
+
+\includepdf{toA4/toA4_num.pdf}
+
+\newpage
+\thispagestyle{empty}
+\noindent {\footnotesize La couverture est librement inspirée\\de la thèse de Jinke Song (2022).}
+~\\~\\~\\~\\~\\~\\~\\~\\~\\~\\~\\~\\~\\~\\~\\~\\
+\noindent {Version de la thèse corrigée au 5 avril 2023.}
+\newpage
+
+\input{titre}
+\setcounter{page}{4}
+
+\newpage
+\thispagestyle{empty}
+\mbox{}
+\newpage
+
+
+\input{remerciements}
+
+\newpage
+\thispagestyle{empty}
+\mbox{}
+\newpage
+
+\input{resume}
+
+\newpage
+\thispagestyle{empty}
+\mbox{}
+\newpage
+
+\tableofcontents
+
+
+\listoffigures
+\newpage
+\listoftables
+
+\newpage
+\thispagestyle{empty}
+\mbox{}
+\newpage
+
+\begin{figure}[p]
+	\includegraphics[width=1\linewidth]{introduction/images/wally}	
+\end{figure}
+
+
+\newpage
+\input{introduction/introduction}
+\begingroup
+\sloppy
+\input{rhotiques/rhotiques}
+\endgroup
+\newpage
+\thispagestyle{empty}
+\mbox{}
+\newpage
+
+\input{jipa/jipa}
+
+\begingroup
+\sloppy
+\input{substance/acoustique_2}
+
+\newpage
+\thispagestyle{empty}
+\mbox{}
+\newpage
+
+
+\input{substance/soundcompa}
+
+\input{substance/roughness}
+
+\input{substance/matagramma}
+
+
+\input{conclusion/conclusion}
+
+\printbibliography[heading=bibintoc]
+%%%\addcontentsline{toc}{chapter}{Bibliographie}
+\endgroup
+
+\begin{appendices}
+	\input{annexes/annexe-1}
+\end{appendices}
+
+\newpage
+\thispagestyle{empty}
+\mbox{}
+\newpage
+
+\newpage
+\thispagestyle{empty}
+\mbox{}
+\newpage
+
+\end{document}
