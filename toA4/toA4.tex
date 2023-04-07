@@ -1,0 +1,181 @@
+\documentclass[12pt,a4paper,twoside]{report}
+
+%\linespread{1.5}
+\linespread{1.25}
+%\linespread{2}
+
+%%==============/CARACTERISTIQUES DU DOCUMENT/==============/%%
+
+\usepackage[inner=4.665cm,outer=3.81cm]{geometry}
+
+%---------------/Packages pour les polices/---------------/%
+
+\usepackage{fontspec}
+\usepackage{polyglossia}
+\setmainlanguage{french}
+\setotherlanguage{greek}
+\setotherlanguage{thai}
+\setotherlanguage{telugu}
+
+%\usepackage{xeCJK}
+\newfontfamily\cjkfont{Noto Serif CJK TC}
+\newfontfamily\thaifont{Norasi}
+%\newfontfamily\devanagarifont[Script=Devanagari]{Lohit Devanagari}
+\newfontfamily\telugufont{Pothana2000}
+
+\setmainfont{Linux Biolinum O}
+\setsansfont{Linux Biolinum O}
+
+
+
+%---------------/Packages pour les liens, citations, refs/---------------/%
+
+\usepackage[xetex]{hyperref}
+
+\usepackage{csquotes}
+
+%---------------/Packages pour les notes/---------------/%
+
+\usepackage{todonotes}
+
+%---------------/Packages pour la mise en forme/---------------/%
+
+\usepackage{multicol}
+\usepackage{epigraph}
+\usepackage{titlesec} 
+\usepackage{setspace}
+\usepackage{pdflscape} 
+
+%---------------/Packages pour les graphiques/---------------/%
+
+\usepackage{float} 
+\usepackage{graphicx}
+\usepackage{subcaption}
+\usepackage{rotating}
+
+
+%---------------/Packages pour les tableaux/---------------/%
+
+\usepackage{array}
+\usepackage{csvsimple}
+\usepackage{booktabs}
+\usepackage{xtab}
+\usepackage{longtable}
+\usepackage{colortbl}
+\usepackage{xcolor}
+
+%---------------/Packages pour les exemples/---------------/%
+
+\usepackage{gb4e}
+\noautomath
+
+%---------------/Nouvelle indexation/---------------/%
+% Adapté de https://tex.stackexchange.com/questions/60209/how-to-add-an-extra-level-of-sections-with-headings-below-subsubsection
+
+\usepackage{titlesec}
+
+\titleformat{\paragraph}
+{\normalfont\normalsize\bfseries}{\theparagraph}{1em}{}
+\titlespacing*{\paragraph}
+{0pt}{3.25ex plus 1ex minus .2ex}{1.5ex plus .2ex}
+
+
+%---------------/Page blanche/---------------/%
+% De https://www.math-linux.com/latex-4/faq/latex-faq/article/latex-comment-inserer-une-page-blanche-vide-avec-ou-sans-numero-thispagestyle-newpage-usepackage-afterpage
+\usepackage{afterpage}
+\newcommand\myemptypage{
+	\null
+	\thispagestyle{empty}
+	\addtocounter{page}{-1}
+	\newpage
+}
+
+%---------------/Mise en forme chapitres/---------------/%
+% De https://tex.stackexchange.com/questions/177144/chapter-style-report-class
+\newcommand*\HUGE{\Huge}
+\newcommand*\chapnamefont{\normalfont\LARGE\MakeUppercase}
+\newcommand*\chapnumfont{\normalfont\HUGE}
+\newcommand*\chaptitlefont{\normalfont\HUGE\bfseries}
+
+\newlength\beforechapskip
+\newlength\midchapskip
+\setlength\midchapskip{\paperwidth}
+\addtolength\midchapskip{-\textwidth}
+\addtolength\midchapskip{-\oddsidemargin}
+\addtolength\midchapskip{-1in}
+\setlength\beforechapskip{18mm}
+
+\titleformat{\chapter}[display]
+{\normalfont\filleft}
+{{\chapnamefont\chaptertitlename}%
+	\makebox[0pt][l]{\hspace{.8em}%
+		\resizebox{!}{\beforechapskip}{\chapnumfont\thechapter}%
+		\hspace{.8em}%
+		\rule{\midchapskip}{\beforechapskip}%
+	}%
+}%
+{25pt}
+{\chaptitlefont}
+\titlespacing*{\chapter}
+{0pt}{40pt}{40pt}
+
+
+%%==============/DEBUT DU DOCUMENT/==============/%%
+
+\begin{document}
+		
+\begin{titlepage}
+	
+	\begin{singlespace} 	
+		\unitlength 1cm
+	
+			\noindent{\normalsize  Université Lumière Lyon 2\\}
+			{\normalsize  Laboratoire Dynamique Du Langage (UMR 5596)\\}
+			{\normalsize  École doctorale Lettres, Langues, Linguistique \& Arts (ED 484)\\}
+			\vspace{30pt}
+			\rule{\linewidth}{0.75pt}
+			
+
+
+			
+			\vspace{0.8cm}
+				
+			%{Soutenue publiquement le 19/12/2022, par~:\\}
+			%{\Large\bf {Rémi Anselme}}
+			%\vspace{0.5cm} 
+			
+			       
+			\noindent{\HUGE \bf La représentation du trill\\en typologie :}\\
+			\vspace{0.3cm}
+			{\Large \bf ~\\de l'acoustique à l’inventaire phonémique}			
+			\vspace{30pt}
+			
+			\begin{center}	
+			
+			\vspace{12pt}
+			
+			\begin{figure}[h]
+				\centering
+				\includegraphics[width=0.7\textwidth]{lettresR.png}
+			\end{figure}
+			
+			\vspace{12pt}
+			\rule{\linewidth}{1.75pt}
+			
+			\vspace{0.5cm}
+			
+		\end{center}
+		{\normalsize  Thèse de doctorat en Sciences du Langage\\}
+		{\normalsize  dirigée par \textbf{Dan DEDIU} et \textbf{François PELLEGRINO}\\}
+		{\normalsize  soutenue le 19 décembre 2022\\}
+		
+		\vspace{1cm}
+		
+		\noindent{\LARGE \bf Rémi ANSELME}
+		%\vfill \clearpage{\pagestyle{empty}\cleardoublepage}
+		
+	\end{singlespace}
+\end{titlepage}
+
+
+\end{document}
